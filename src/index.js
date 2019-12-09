@@ -168,7 +168,10 @@ export default function(md, options) {
     const tokens = state.tokens;
 
     // reset key ids for each document
-    if (options.resetIds) {
+    const { resetIds } = options;
+    const shouldResetIds =
+      typeof resetIds === "function" ? resetIds() : resetIds;
+    if (shouldResetIds) {
       headingIds = {};
     }
 
